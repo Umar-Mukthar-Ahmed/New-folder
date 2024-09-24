@@ -23,11 +23,11 @@ const todoList = () => {
   const toDisplayableList = (list) => {
     return list
       .map((item, index) => {
-        const status = item.completed ? "X" : " ";
+        const status = item.completed ? "x" : " ";
         if (item.dueDate === today) {
           return `[${status}] ${item.title}`;
         } else {
-          return `[${status}] ${item.title} Due: ${item.dueDate}`;
+          return `[${status}] ${item.title} ${item.dueDate}`;
         }
       })
       .join("\n");
