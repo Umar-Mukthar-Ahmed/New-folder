@@ -1,5 +1,12 @@
+/* eslint-disable no-undef */
 const todoList = () => {
   let all = [];
+  var dateToday = new Date();
+  const formattedDate = (d) => {
+    return d.toISOString().split("T")[0];
+  };
+  const today = formattedDate(dateToday);
+
   const add = (todoItem) => {
     all.push(todoItem);
   };
