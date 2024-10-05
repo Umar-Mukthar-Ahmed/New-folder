@@ -1,6 +1,6 @@
 /* eslint-disable no-undef */
 const todoList = require("../todo");
-const { all, add, overdue, dueToday, dueLater } = todoList();
+const { all, markAsComplete, add, overdue, dueToday, dueLater } = todoList();
 
 // describe("Todo List Test Suite", () => {
 //   beforeAll(() => {
@@ -12,21 +12,6 @@ const { all, add, overdue, dueToday, dueLater } = todoList();
 //     });
 //   });
 
-//   test("Should add new todo", () => {
-//     const initialTodoCount = all.length;
-//     add({
-//       title: "Another Test todo",
-//       completed: false,
-//       dueDate: new Date().toISOString().slice(0, 10),
-//     });
-//     expect(all.length).toBe(initialTodoCount + 1);
-//   });
-
-//   test("Should mark a todo as complete", () => {
-//     expect(all[0].completed).toBe(false);
-//     markAsComplete(0);
-//     expect(all[0].completed).toBe(true);
-//   });
 // });
 
 describe("Todo List Test Suite", () => {
@@ -39,16 +24,20 @@ describe("Todo List Test Suite", () => {
     });
   });
 
-  // Existing tests...
-
-  test("Should create a new todo", () => {
+  test("Should add new todo", () => {
     const initialTodoCount = all.length;
     add({
-      title: "New Todo",
+      title: "Another Test todo",
       completed: false,
       dueDate: new Date().toISOString().slice(0, 10),
     });
     expect(all.length).toBe(initialTodoCount + 1);
+  });
+
+  test("Should mark a todo as complete", () => {
+    expect(all[0].completed).toBe(false);
+    markAsComplete(0);
+    expect(all[0].completed).toBe(true);
   });
 
   test("Should retrieve overdue items", () => {
