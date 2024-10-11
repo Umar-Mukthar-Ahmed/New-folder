@@ -6,9 +6,6 @@ describe("Todolist Test Suite", () => {
   beforeAll(async () => {
     await db.sequelize.sync({ force: true });
   });
-  beforeAll(async () => {
-    await db.sequelize.sync();
-  });
 
   test("Should add new todo", async () => {
     const todoItemsCount = await db.Todo.count();

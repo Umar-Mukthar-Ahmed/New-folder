@@ -7,7 +7,6 @@ class Todo extends Model {
   }
 
   displayableString() {
-    // Fix the typo here
     return `${this.id} ${this.title}-${this.dueDate}`;
   }
 }
@@ -29,7 +28,7 @@ Todo.init(
     // Second argument with table name
     sequelize, // Add the sequelize instance
     tableName: "todos",
-  },
+  }
 );
 
 module.exports = Todo;
