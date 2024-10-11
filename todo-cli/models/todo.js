@@ -1,6 +1,7 @@
 "use strict";
 const { Op } = require("sequelize");
 const { Model } = require("sequelize");
+
 module.exports = (sequelize, DataTypes) => {
   class Todo extends Model {
     static async addTask(params) {
@@ -81,7 +82,15 @@ module.exports = (sequelize, DataTypes) => {
 
     displayableString() {
       const checkbox = this.completed ? "[x]" : "[ ]";
-      const formattedDate = this.dueDate.toISOString().split("T")[0];
+      const today = new Date().toISOString().split("T")[0];
+
+      // If the task is due today, do not show the date
+      if (this.dueDate === today) {
+        return `${this.id}. ${checkbox} ${this.title.trim()}`;
+      }
+
+      // For overdue or future tasks, show the date
+      const formattedDate = this.dueDate;
       return `${this.id}. ${checkbox} ${this.title.trim()} ${formattedDate}`;
     }
   }
