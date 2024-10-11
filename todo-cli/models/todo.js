@@ -36,37 +36,34 @@ module.exports = (sequelize, DataTypes) => {
     }
 
     static async overdue() {
-      const today = new Date();
+      const today = new Date().toISOString().split("T")[0];
       return await Todo.findAll({
         where: {
           dueDate: {
             [Op.lt]: today,
           },
-          completed: false,
         },
         order: [["dueDate", "ASC"]],
       });
     }
 
     static async dueToday() {
-      const today = new Date();
+      const today = new Date().toISOString().split("T")[0];
       return await Todo.findAll({
         where: {
           dueDate: today,
-          completed: false,
         },
         order: [["dueDate", "ASC"]],
       });
     }
 
     static async dueLater() {
-      const today = new Date();
+      const today = new Date().toISOString().split("T")[0];
       return await Todo.findAll({
         where: {
           dueDate: {
             [Op.gt]: today,
           },
-          completed: false,
         },
         order: [["dueDate", "ASC"]],
       });
@@ -104,7 +101,7 @@ module.exports = (sequelize, DataTypes) => {
     {
       sequelize,
       modelName: "Todo",
-    },
+    }
   );
   return Todo;
 };
